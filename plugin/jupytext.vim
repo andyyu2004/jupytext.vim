@@ -345,7 +345,7 @@ function s:write_to_ipynb() abort
         echoerr l:cmd.": ".v:shell_error
     else
         setlocal nomodified
-        echo expand("%") . " saved via jupytext."
+        " echo expand("%") . " saved via jupytext."
     endif
 endfunction
 
