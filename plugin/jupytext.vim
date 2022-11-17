@@ -320,12 +320,12 @@ function s:get_jupytext_file(filename, fmt)
     " strip file extension
     let l:fileroot = fnamemodify(a:filename, ':r')
     " the folder in which filename is
-    let l:head = fnamemodify(l:fileroot, ':h')
+    " let l:head = fnamemodify(l:fileroot, ':h')
     " the fileroot without the folder
     let l:tail = fnamemodify(l:fileroot, ':t')
     " file extension from fmt
     let l:extension = s:jupytext_extension_map[a:fmt]
-    let l:jupytext_file = l:fileroot . "." . l:extension
+    let l:jupytext_file = "/tmp/" . l:tail . "." . l:extension
     return l:jupytext_file
 endfunction
 
