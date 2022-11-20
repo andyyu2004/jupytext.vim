@@ -229,11 +229,11 @@ if !exists('g:jupytext_command')
 endif
 
 if !exists('g:jupytext_fmt')
-    let g:jupytext_fmt = 'ipynb'
+    let g:jupytext_fmt = 'py'
 endif
 
 if !exists('g:jupytext_output')
-    let g:jupytext_output = '--to=py:hydrogen'
+    let g:jupytext_output = 'py:hydrogen'
 endif
 
 if !exists('g:jupytext_to_ipynb_opts')
@@ -339,7 +339,7 @@ function s:write_to_ipynb() abort
     call s:debugmsg("overwriting ".fnameescape(b:jupytext_file))
     silent execute "write! ".fnameescape(b:jupytext_file)
     call s:debugmsg("Updating notebook from ".b:jupytext_file)
-    let l:cmd = g:jupytext_command." --from=" . g:jupytext_fmt
+    let l:cmd = g:jupytext_command." --from=" . g:jupytext_output
     \         . " " . g:jupytext_to_ipynb_opts . " "
     \         . shellescape(b:jupytext_file)
     call s:debugmsg("cmd: ".l:cmd)
