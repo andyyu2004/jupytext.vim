@@ -229,7 +229,11 @@ if !exists('g:jupytext_command')
 endif
 
 if !exists('g:jupytext_fmt')
-    let g:jupytext_fmt = 'md'
+    let g:jupytext_fmt = 'py'
+endif
+
+if !exists('g:jupytext_output')
+    let g:jupytext_output = '--to=py:hydrogen'
 endif
 
 if !exists('g:jupytext_to_ipynb_opts')
@@ -265,7 +269,7 @@ function s:read_from_ipynb()
     call s:debugmsg("jupytext_file exists: ".b:jupytext_file_exists)
     if (l:filename_exists && !b:jupytext_file_exists)
         call s:debugmsg("Generate file ".b:jupytext_file)
-        let l:cmd = g:jupytext_command." --to=".g:jupytext_fmt
+        let l:cmd = g:jupytext_command." --to=".g:jupytext_output
         \         . " --output=".shellescape(b:jupytext_file) . " "
         \         . shellescape(l:filename)
         call s:debugmsg("cmd: ".l:cmd)
@@ -335,7 +339,7 @@ function s:write_to_ipynb() abort
     call s:debugmsg("overwriting ".fnameescape(b:jupytext_file))
     silent execute "write! ".fnameescape(b:jupytext_file)
     call s:debugmsg("Updating notebook from ".b:jupytext_file)
-    let l:cmd = g:jupytext_command." --from=" . g:jupytext_fmt
+    let l:cmd = g:jupytext_command." --from=" . g:jupytext_output
     \         . " " . g:jupytext_to_ipynb_opts . " "
     \         . shellescape(b:jupytext_file)
     call s:debugmsg("cmd: ".l:cmd)
