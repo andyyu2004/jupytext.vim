@@ -342,7 +342,7 @@ function s:write_to_ipynb() abort
     let l:cmd = g:jupytext_command." --from=" . g:jupytext_output
     \         . " " . g:jupytext_to_ipynb_opts . " "
     \         . shellescape(b:jupytext_file)
-    \         . "--output=" . l:filename
+    \         . " --output=" . l:filename
     call s:debugmsg("cmd: ".l:cmd)
     let l:output=system(l:cmd)
     call s:debugmsg(l:output)
