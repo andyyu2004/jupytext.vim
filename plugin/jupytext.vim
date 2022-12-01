@@ -329,7 +329,8 @@ function s:get_jupytext_file(filename, fmt)
     let l:tail = fnamemodify(l:fileroot, ':t')
     " file extension from fmt
     let l:extension = s:jupytext_extension_map[a:fmt]
-    let l:jupytext_file = "/tmp/" . l:tail . "." . l:extension
+    let l:jupytext_dir = "/tmp/" . substitute(l:fileroot, '/', '_', 'g')
+    let l:jupytext_file = l:jupytext_dir . "/" . l:tail . "." . l:extension
     return l:jupytext_file
 endfunction
 
